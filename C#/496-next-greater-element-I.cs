@@ -4,7 +4,7 @@ public class Solution
     {
         int max = -1;
         if(nums.Length > 0) {
-            int max = nums[0];
+            max = nums[0];
         }
         
         for (int i = 0; i < nums.Length; i++)
