@@ -1,3 +1,41 @@
+// optimized solution:
+public class Solution {
+    public bool CanPermutePalindrome(string s) {
+        // edge cases:
+        if(s == null) {
+            return false;
+        }
+        if(s.Length <= 1) {
+            return true;
+        }
+
+        HashSet<char> set = new HashSet<char>();
+        
+        // build set by iterating through string:
+        //      if set does not contain character, add it to set
+        //      if set already contains character, remove it from set
+        for(int i = 0; i < s.Length; i++) {
+            char c = s.ElementAt(i);
+            if(set.Contains(c)) {
+                set.Remove(c);
+            }
+            else {
+                set.Add(c);
+            }
+        }
+
+        // examine / return set; if count == 0, palindrome exists. if count == 1, there is an uneven count of chars in the string and no palindrome permutation exists
+        if(set.Count == 0 || set.Count == 1) { // if the set has tracked an even-length or odd-length palindrome
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+
+// initial solution:
 public class Solution
 {
     public bool CanPermutePalindrome(string s)
