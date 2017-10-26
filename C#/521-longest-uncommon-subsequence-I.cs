@@ -1,3 +1,10 @@
+// simplified solution (must be an april fools question):
+public class Solution {
+    public int FindLUSlength(string a, string b) {
+        return (a.Equals(b)) ? -1 : Math.Max(a.Length, b.Length);
+    }
+}
+
 // lol this actually works
 public class Solution {
     public int FindLUSlength(string a, string b) {
