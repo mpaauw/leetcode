@@ -10,6 +10,47 @@ class Employee {
     public List<Integer> subordinates;
 };
 */
+
+// optimized solution:
+class Solution {
+    public int getImportance(List<Employee> employees, int id) {
+        int sum = 0;
+        // edge cases:
+        if(employees == null) {
+            return sum;
+        }
+        else if(employees.size() < 1) {
+            return sum;
+        }
+        
+        HashMap<Integer,Employee> employeeMap = new HashMap<Integer,Employee>(); // store a hash map of employee id's and their indexes within the list for quick lookup
+
+        // build map of employees:
+        for(Employee employee : employees) {
+            employeeMap.put(employee.id, employee);
+        }
+
+        // find data on employee in question:
+        if(employeeMap.containsKey(id)) {
+            Employee employee = employeeMap.get(id);
+            Stack<Employee> stack = new Stack<Employee>(); // use a stack to keep track of indirect employee-subordinate relationships
+            stack.push(employee);
+            while(!stack.isEmpty()) {
+                Employee current = stack.pop();
+                sum += current.importance;
+                for(Integer subId : current.subordinates) {
+                    if(employeeMap.containsKey(subId)) {
+                        Employee drone = employeeMap.get(subId);
+                        stack.push(drone);
+                    }               
+                }
+            }
+        }
+        return sum;
+    }
+}
+
+// initial solution:
 class Solution {
     public int getImportance(List<Employee> employees, int id) {
         int sum = 0;
