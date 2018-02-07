@@ -17,15 +17,19 @@ public class Solution
     {
         int temp = num;
         List<int> digits = new List<int>();
-        while(temp > 0) {
+        while (temp > 0)
+        {
             digits.Add(temp % 10);
             temp /= 10;
         }
-        foreach(int d in digits) {
-            if(d == 0) {
+        foreach (int d in digits)
+        {
+            if (d == 0)
+            {
                 return false;
             }
-            else if(num % d != 0) {
+            else if (num % d != 0)
+            {
                 return false;
             }
         }
